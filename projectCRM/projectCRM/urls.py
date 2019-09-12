@@ -18,7 +18,7 @@ from django.contrib import admin
 from projectCRM import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('crm.urls')),
+    url(r'^crm', include('crm.urls')),
     url(r'^kingadmin/', include('kingadmin.urls')),
     url(r'^login/',views.acc_login ),
     url(r'^logout/',views.acc_logout,name="logout" ),
