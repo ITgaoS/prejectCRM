@@ -1,3 +1,5 @@
+
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -46,14 +48,17 @@ class CustomerInfo(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name="客户信息"
+        verbose_name_plural="客户信息"
 
 class Student(models.Model):
     """学员表"""
-    customer = models.ForeignKey("CustomerInfo",on_delete=models.CASCADE)
+    customer = models.OneToOneField("CustomerInfo",on_delete=models.CASCADE)
     class_grades = models.ManyToManyField("ClassList")
 
     def __str__(self):
-        return self.customer
+        return "%s" %self.customer
 
 
 class CustomerFollowUp(models.Model):
@@ -172,5 +177,3 @@ class Menus(models.Model):
 
     class Meta:
         unique_together = ('name','url_name')
-
-
